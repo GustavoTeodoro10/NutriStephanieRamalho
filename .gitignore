@@ -1,0 +1,13 @@
+# Standalone Tailwind CLI binary (large, downloaded on demand — see README)
+/tools/
+
+# Local preview tooling config (specific to this coding environment)
+/.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/

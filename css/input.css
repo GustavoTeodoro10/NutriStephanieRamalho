@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand palette — extracted directly from the client's existing logo/site */
+  --color-teal-900: #054247;
+  --color-teal-800: #075158;
+  --color-teal-700: #03979e;   /* primary — script wordmark, icon */
+  --color-teal-600: #0aa8b0;
+  --color-teal-500: #2bc0c8;
+  --color-teal-100: #e3f5f6;
+  --color-teal-50:  #f2fbfb;
+
+  --color-rose-700: #cc3366;   /* deep accent — original site link color */
+  --color-rose-600: #e05c82;
+  --color-rose-500: #ea8190;   /* primary rose — strawberry / label */
+  --color-rose-300: #f4b3bd;
+  --color-rose-100: #fce6ea;
+  --color-rose-50:  #fff5f6;
+
+  --color-sage-600: #74853f;   /* strawberry leaf — used sparingly */
+  --color-sage-100: #edf1e0;
+
+  --color-cream-50: #fffaf6;
+  --color-cream-100: #fdf3ec;
+
+  --color-ink-900: #2a2724;
+  --color-ink-700: #4d4844;
+  --color-ink-500: #7a746e;
+
+  --color-whatsapp: #25d366;
+
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-sans: "Manrope", "Segoe UI", sans-serif;
+
+  --shadow-soft: 0 20px 45px -20px rgba(204, 51, 102, 0.28);
+  --shadow-tealsoft: 0 20px 45px -20px rgba(3, 151, 158, 0.35);
+
+  --animate-fade-up: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-reveal: reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  body {
+    background-color: var(--color-cream-50);
+    color: var(--color-ink-900);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-teal-700);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .container-page {
+    width: 100%;
+    max-width: 78rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-page { padding-inline: 2.5rem; }
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 0.8125rem;
+    letter-spacing: 0.02em;
+    color: var(--color-rose-700);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.9rem 1.7rem;
+    border-radius: 999px;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, background-color 0.25s ease;
+    white-space: nowrap;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:active { transform: translateY(0); }
+
+  .btn-whatsapp {
+    background-color: var(--color-whatsapp);
+    color: white;
+    box-shadow: 0 16px 30px -12px rgba(37, 211, 102, 0.55);
+  }
+  .btn-whatsapp:hover { background-color: #1fb959; }
+
+  .btn-ghost {
+    background-color: transparent;
+    color: var(--color-teal-800);
+    border: 1.5px solid var(--color-teal-700);
+  }
+  .btn-ghost:hover { background-color: var(--color-teal-50); }
+
+  .btn-light {
+    background-color: white;
+    color: var(--color-teal-800);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .card {
+    background-color: white;
+    border-radius: 1.75rem;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  .star {
+    color: #f5b400;
+  }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(26px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(14px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
